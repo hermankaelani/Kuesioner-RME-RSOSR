@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Kuesioner RME Lengkap</title>
+    <title>Kuesioner RME RSOSR</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,7 +13,22 @@
             padding: 20px;
         }
 
-        h1,
+        h1 {
+            color: #333;
+            text-align: center;
+            line-height: 1.3;
+            font-size: 2rem;
+            /* contoh */
+        }
+
+        h1 .subline {
+            display: block;
+            font-size: 2rem;
+            /* Sesuaikan ukuran jika perlu */
+            margin-top: 4px;
+            /* Atur jaraknya supaya lebih rapat */
+        }
+
         h2 {
             color: #333;
         }
@@ -129,6 +144,18 @@
 
         /* Responsive: sembunyikan radio di mobile, tampilkan select */
         @media (max-width: 600px) {
+            h1 {
+                font-size: 1.2rem;
+                /* atau lebih kecil */
+            }
+
+            h1 .subline {
+                font-size: 1.2rem;
+                /* atau lebih kecil */
+            }
+        }
+
+        @media (max-width: 600px) {
             .radio-group {
                 display: none;
             }
@@ -191,7 +218,9 @@
 </head>
 
 <body>
-    <h1>Kuesioner Analisis Pelaksanaan Rekam Medis Elektronik</h1>
+    <h1>KUESIONER ANALISIS PELAKSANAAN REKAM MEDIS ELEKTRONIK DENGAN METODE DELONE AND MCLEAN INFORMATION SYSTEM
+        SUCCESS (D&M) <span class="subline">DI RS ORTHOPEDI SIAGA RAYA</span>
+    </h1>
 
     <form id="kuesionerForm" novalidate>
         <!-- Step 1 -->
@@ -424,14 +453,6 @@
 
             // Tombol navigasi
             const stepNum = parseInt(stepId.replace('step', ''), 10);
-
-            // html += `<div class="buttons"><input type="button" value="Sebelumnya" onclick="prevStep(${stepNum})" />`;
-            // if (stepId === 'step8') {
-            //     html += `<input type="submit" value="Kirim Kuesioner" />`;
-            // } else {
-            //     html += `<input type="button" value="Selanjutnya" onclick="nextStep(${stepNum})" />`;
-            // }
-            // html += `</div>`;
             html += `<div class="buttons"><input type="button" value="Sebelumnya" onclick="prevStep(${stepNum})" />`;
 
             if (stepId === 'step8') {
@@ -556,84 +577,36 @@
             return true;
         }
 
-        // Submit form handler
-        // document.getElementById('kuesionerForm').addEventListener('submit', e => {
-        //     e.preventDefault();
-        //     alert('Terima kasih telah mengisi kuesioner!');
-        //     e.target.reset();
-        //     // Reset wizard ke step1
-        //     document.querySelectorAll('.wizard').forEach(el => el.classList.remove('active'));
-        //     document.getElementById('step1').classList.add('active');
-        //     window.scrollTo(0, 0);
-        // });
-
-        //Submit Ke Google Sheet
-        // document.getElementById('kuesionerForm').addEventListener('submit', e => {
-        //     e.preventDefault();
-        //     const formData = new FormData(e.target);
-
-        //     fetch('https://script.google.com/macros/s/AKfycbymyrTlMuH9gS84Yp-3TXd2L9jgG4Co_Juqbd0171bTM8xcQSOp3CIijc6ZFLJ_lpIf/exec', {
-        //             method: 'POST',
-        //             body: formData
-        //         })
-        //         .then(response => {
-        //             if (response.ok) {
-        //                 alert('Terima kasih telah mengisi kuesioner!');
-        //                 e.target.reset();
-        //             } else {
-        //                 throw new Error('Gagal mengirim: status bukan 200');
-        //             }
-        //         })
-        //         .catch(error => {
-        //             alert('Gagal mengirim data. Coba lagi.');
-        //             console.error('Error saat kirim:', error);
-        //         });
-        // });
-
-        // document.getElementById('kuesionerForm').addEventListener('submit', e => {
-        //     e.preventDefault();
-
-        //     const form = e.target;
-        //     const formData = new FormData(form);
-
-        //     fetch('https://script.google.com/macros/s/AKfycbwKfp4QxXJdszzbednI9Swy7giGONQ-LKzgd3IhBFMaJ-S53LWRufgoxyVg4BqhoYgR/exec', {
-        //             method: 'POST',
-        //             mode: 'cors',
-        //             body: formData
-        //         })
-        //         .then(response => {
-        //             if (!response.ok) throw new Error('Network response was not ok');
-
-        //             return response.json(); // parsing JSON dari Apps Script
-        //         })
-        //         .then(data => {
-        //             if (data.result === 'success') {
-        //                 alert('Terima kasih telah mengisi kuesioner!');
-        //                 form.reset();
-
-        //                 // Reset wizard ke step1
-        //                 document.querySelectorAll('.wizard').forEach(el => el.classList.remove('active'));
-        //                 document.getElementById('step1').classList.add('active');
-        //                 window.scrollTo(0, 0);
-        //             } else {
-        //                 throw new Error('Response tidak sukses');
-        //             }
-        //         })
-        //         .catch(error => {
-        //             alert('Gagal mengirim data. Coba lagi.');
-        //             console.error('Error saat kirim:', error);
-        //         });
-        // });
         document.getElementById('kuesionerForm').addEventListener('submit', e => {
             e.preventDefault();
 
             const form = e.target;
-            const formData = new FormData(form);
             const spinner = document.getElementById('spinner');
 
-            spinner.style.display = 'block'; // tampilkan spinner
+            // 1️⃣ Buat form clone kosong
+            const cloneForm = document.createElement('form');
 
-            fetch('https://script.google.com/macros/s/AKfycbwKfp4QxXJdszzbednI9Swy7giGONQ-LKzgd3IhBFMaJ-S53LWRufgoxyVg4BqhoYgR/exec', {
+            // 2️⃣ Tambahkan input yang terlihat ke clone
+            form.querySelectorAll('input, select').forEach(el => {
+                if (window.getComputedStyle(el).display !== 'none' && el.name) {
+                    const cloneInput = el.cloneNode(true);
+                    cloneInput.value = el.value;
+                    if (el.type === 'radio' || el.type === 'checkbox') {
+                        if (el.checked) {
+                            cloneForm.appendChild(cloneInput);
+                        }
+                    } else {
+                        cloneForm.appendChild(cloneInput);
+                    }
+                }
+            });
+
+            // 3️⃣ Buat FormData dari cloneForm
+            const formData = new FormData(cloneForm);
+
+            spinner.style.display = 'block';
+
+            fetch('https://script.google.com/macros/s/AKfycbychahonx_-tZceHdRTtCL3RzqBXU3jFDb5g8hQ0egwiW-bL-XNV_H0p23mkwIg_7Bs/exec', {
                     method: 'POST',
                     mode: 'cors',
                     body: formData
@@ -658,7 +631,7 @@
                     console.error('Error saat kirim:', error);
                 })
                 .finally(() => {
-                    spinner.style.display = 'none'; // sembunyikan spinner setelah selesai
+                    spinner.style.display = 'none';
                 });
         });
     </script>
