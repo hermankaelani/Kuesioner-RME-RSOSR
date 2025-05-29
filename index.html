@@ -238,29 +238,52 @@
                 <label><input type="radio" name="jenis_kelamin" value="P" required /> Perempuan</label>
             </div>
 
-            <label for="unit_kerja">Unit Kerja/Jabatan:</label>
-            <select id="unit_kerja" name="unit_kerja" required>
-                <option value="" disabled selected>Pilih unit kerja</option>
-                <option>Dokter</option>
-                <option>Perawat</option>
-                <option>Kasir</option>
-                <option>Rekam Medis</option>
-                <option>Fisioterapi</option>
-                <option>Rontgen</option>
-                <option>Farmasi</option>
-                <option>Lainnya</option>
+            <label for="usia">Usia:</label>
+            <select id="usia" name="usia" required>
+                <option value="" disabled selected>Pilih usia</option>
+                <option>20 - 30 Tahun</option>
+                <option>31-40 Tahun</option>
+                <option>41-50 Tahun</option>
+                <option>> 50 Tahun</option>
+
             </select>
 
             <label for="pendidikan">Pendidikan Terakhir:</label>
             <select id="pendidikan" name="pendidikan" required>
                 <option value="" disabled selected>Pilih pendidikan terakhir</option>
-                <option>SMA</option>
+                <option>SLTA/Sederajat</option>
                 <option>D3</option>
                 <option>S1</option>
                 <option>S2</option>
                 <option>S3</option>
             </select>
 
+            <label for="unit_kerja">Unit Kerja/Jabatan:</label>
+            <select id="unit_kerja" name="unit_kerja" required>
+                <option value="" disabled selected>Pilih unit kerja</option>
+                <option>Dokter</option>
+                <option>Manajemen/Direksi</option>
+                <option>Perawat & Bidan</option>
+                <option>Kasir & TU</option>
+                <option>Rekam Medis</option>
+                <option>Fisioterapi</option>
+                <option>Pendaftaran Rawat Jalan & Admission</option>
+                <option>Rontgen</option>
+                <option>Farmasi</option>
+                <option>Gizi</option>
+                <option>Laboratorium</option>
+                <option>IT</option>
+
+            </select>
+
+            <label for="masa_kerja">Masa Kerja:</label>
+            <select id="masa_kerja" name="masa_kerja" required>
+                <option value="" disabled selected>Pilih Masa Kerja</option>
+                <option>0-5 Tahun</option>
+                <option>6-10 Tahun</option>
+                <option>> 10 Tahun</option>
+
+            </select>
             <div class="buttons">
                 <input type="button" value="Selanjutnya" onclick="nextStep(1)" />
             </div>
@@ -606,7 +629,7 @@
 
             spinner.style.display = 'block';
 
-            fetch('https://script.google.com/macros/s/AKfycbychahonx_-tZceHdRTtCL3RzqBXU3jFDb5g8hQ0egwiW-bL-XNV_H0p23mkwIg_7Bs/exec', {
+            fetch('https://script.google.com/macros/s/AKfycbzFPqXwPxb0x5YaSoEdp2k5Ym5r7r5w0e0TKCIH-ithClanR8kfdrA2B9g8I8W3ZzIK/exec', {
                     method: 'POST',
                     mode: 'cors',
                     body: formData
